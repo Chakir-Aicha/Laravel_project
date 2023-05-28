@@ -1,0 +1,43 @@
+@extends('layout')
+@section('content')
+<div class="container-fluid">
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Update Roomtype
+                <a href="{{url('admin/roomtype')}}" class="float-right btn btn-success btn-sm">View All</a>
+            </h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <form method="post" action="{{url('admin/roomtype/'.$data->id)}}">
+                    @csrf
+                    @method('put')
+                    @if(Session::has('success'))
+                        <p class="text-success">{{session('success')}}</p>
+                    @endif
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>Title</th>
+                            <td><input name="title" value="{{$data->title}}" type="text" class="form-control" /></td>
+                        </tr>
+                        <tr>
+                            <th>Price</th>
+                            <td><input value="{{$data->price}}" name="price" type="number" class="form-control" /></td>
+                        </tr>
+                        <tr>
+                            <th>Description</th>
+                            <td><textarea name="description" class="form-control">{{$data->description}}</textarea></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <input type="submit" class="btn btn-primary" />
+                            </td> 
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
